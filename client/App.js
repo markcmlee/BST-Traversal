@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import generateBST from "./scripts/bst";
+import DisplayTree from "./components/DisplayTree";
 
 const App = () => {
   const [tree, setTree] = useState(null);
@@ -18,6 +19,7 @@ const App = () => {
         Generate a new Binary Search Tree
       </button>
       <p>{tree && keys}</p>
+      <DisplayTree />
     </main>
   );
 };
