@@ -70,10 +70,10 @@ const inOrderHelper = (data) => {
 const inOrder = (data) => {
   resetTraversal();
   const array = inOrderHelper(data);
-  console.log(array);
+  const sorted = array.sort((a, b) => a.value - b.value);
   let animFactor = 0;
 
-  array.forEach((el) => {
+  sorted.forEach((el) => {
     visitElement(el, animFactor);
     animFactor += 1;
   });
