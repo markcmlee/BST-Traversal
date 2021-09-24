@@ -6,39 +6,53 @@ class BST {
   }
 
   insert(value) {
-    const newNode = new Node(value);
-    if (this.root === null) {
-      this.root = newNode;
-      return this;
+    // create node from value
+    const node = new Node(value);
+    // if the tree's root is null, set the root to the new node
+    if (this.root == null || this.root.value == null) {
+      this.root = node;
     }
 
-    let current = this.root;
-    while (current) {
-      if (current.value === value) return;
-      if (current.value > value) {
-        if (current.children[0] == null || current.children[0].value === "e") {
-          current.children[0] = newNode;
-          if (current.children[1] == null) {
-            current.children[1] = new Node("e");
+    let currentNode = this.root;
+    while (currentNode) {
+      // If tree contains value return
+      if (currentNode.value == value) {
+        return;
+      }
+      // value is less than current.value
+      else if (value < currentNode.value) {
+        if (
+          currentNode.children[0] == null ||
+          currentNode.children[0].value === "e"
+        ) {
+          currentNode.children[0] = node;
+          if (currentNode.children[1] == null) {
+            currentNode.children[1] = new Node("e");
           }
-          return this;
+          return;
         }
-        current = current.children[0];
-      } else {
-        if (current.children[1] == null || current.children[1].value === "e") {
-          if (!current.children[0]) {
-            current.children[0] = new Node("e");
+        // current = current.left;
+        currentNode = currentNode.children[0];
+      }
+      // value is greater than current.value
+      else {
+        if (
+          currentNode.children[1] == null ||
+          currentNode.children[1].value === "e"
+        ) {
+          if (!currentNode.children[0]) {
+            currentNode.children[0] = new Node("e");
           }
-          current.children[1] = newNode;
-          return this;
+          currentNode.children[1] = node;
+          return;
         }
-        current = current.children[1];
+        currentNode = currentNode.children[1];
       }
     }
   }
 }
 
-const randomNum = () => Math.ceil(Math.random() * 10) + 15;
+const randomNum = () => Math.ceil(Math.random() * 10) + 14;
 
 const randomValue = () => Math.ceil(Math.random() * 40);
 
@@ -55,7 +69,7 @@ const generateBST = () => {
       tree.insert(newValue);
     }
   }
-  return tree;
+  return [numNodes, tree];
 };
 
 export default generateBST;
