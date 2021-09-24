@@ -90,8 +90,9 @@ const App = () => {
   };
 
   const clickBFS = () => {
+    setTraversedResult([]);
     animationTimeout();
-    bfs(tree);
+    setTraversedResult(customArrayMap(bfs(tree)));
   };
 
   const keys = [];
