@@ -29,6 +29,19 @@ const App = () => {
     });
   };
 
+  const simpleCustomMap = (array) => {
+    return array.map((el, i) => {
+      if (i === 0) return <li key={el}>[ {el},</li>;
+      if (i === array.length - 1) return <li key={el}>{el} ]</li>;
+      return (
+        <li key={el}>
+          {"  "}
+          {el},
+        </li>
+      );
+    });
+  };
+
   const animationTimeout = () => {
     setIsTraversalActive(true);
     setTimeout(() => {
@@ -52,8 +65,9 @@ const App = () => {
   };
 
   const clickPreOrder = () => {
+    setTraversedResult([]);
     animationTimeout();
-    preOrder(tree);
+    setTraversedResult(simpleCustomMap(preOrder(tree)));
   };
 
   const clickInOrder = () => {
@@ -63,9 +77,9 @@ const App = () => {
     setTraversedResult(customArrayMap(inOrder(formatted)));
   };
 
-  useEffect(() => {
-    console.log("TRAVERSED RESULT ALKDJLAKDJLKASJDKLAJLDJ", traversedResult);
-  }, [traversedResult]);
+  // useEffect(() => {
+  //   console.log("TRAVERSED RESULT ALKDJLAKDJLKASJDKLAJLDJ", traversedResult);
+  // }, [traversedResult]);
 
   const clickPostOrder = () => {
     setTraversedResult([]);

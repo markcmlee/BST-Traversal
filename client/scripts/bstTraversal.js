@@ -16,7 +16,7 @@ const resetTraversal = () => {
 };
 
 const visitElement = (element, animFactor) => {
-  console.log(element.value);
+  // console.log(element.value);
   d3.select(`#node${element.value}`)
     .select("text")
     .transition()
@@ -37,18 +37,24 @@ const preOrder = (data) => {
   resetTraversal();
   const stack = [];
   let animFactor = 0;
+  const result = [];
 
   stack.push(data.root);
   while (stack.length) {
     const element = stack.pop();
     visitElement(element, animFactor);
-    if (element.value !== "e") animFactor += 1;
+    if (element.value !== "e") {
+      animFactor += 1;
+      result.push(element.value);
+    }
     if (element.children.length !== 0) {
       for (let i = 0; i < element.children.length; i++) {
         stack.push(element.children[element.children.length - i - 1]);
       }
     }
   }
+  console.log("RESULTUSLUTLS", result);
+  return result;
 };
 
 const inOrderHelper = (data) => {
