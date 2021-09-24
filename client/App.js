@@ -1,14 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import generateBST from "./scripts/bst";
 import DisplayTree from "./components/DisplayTree";
 import drawTree from "./scripts/d3tree";
-import {
-  resetTraversal,
-  preOrder,
-  inOrder,
-  postOrder,
-  bfs,
-} from "./scripts/bstTraversal";
+import { preOrder, inOrder, postOrder, bfs } from "./scripts/bstTraversal";
 
 const App = () => {
   const [tree, setTree] = useState(null);
@@ -77,10 +71,6 @@ const App = () => {
     setTraversedResult(customArrayMap(inOrder(formatted)));
   };
 
-  // useEffect(() => {
-  //   console.log("TRAVERSED RESULT ALKDJLAKDJLKASJDKLAJLDJ", traversedResult);
-  // }, [traversedResult]);
-
   const clickPostOrder = () => {
     setTraversedResult([]);
     animationTimeout();
@@ -137,14 +127,6 @@ const App = () => {
           >
             RUN BFS
           </button>
-          {/* <button
-          type="button"
-          id="reset"
-          disabled={isTraversalActive}
-          onClick={resetTraversal}
-        >
-          RESET
-        </button> */}
         </section>
       </section>
 
