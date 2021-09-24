@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import generateBST from "./scripts/bst";
 import DisplayTree from "./components/DisplayTree";
 import drawTree from "./scripts/d3tree";
@@ -9,6 +9,7 @@ const App = () => {
   const [numNodes, setNumNodes] = useState(null);
   const [isTraversalActive, setIsTraversalActive] = useState(false);
   const [traversedResult, setTraversedResult] = useState([]);
+  const [toggleShowNodes, setToggleShowNodes] = useState(false);
 
   const customArrayMap = (array) => {
     return array.map((el, i) => {
@@ -88,8 +89,14 @@ const App = () => {
   const keys = [];
   keys.push(<div key="h"> {JSON.stringify(tree)} </div>);
 
+  // useEffect(() => {
+  //   if (toggleShowNodes) {
+  //     style={{'display': 'hidden'}}
+  //   }
+  // }, [toggleShowNodes])
+
   return (
-    <main>
+    <div>
       <section id="buttonContainer">
         <button type="button" id="generate" onClick={clickGenerateBST}>
           Generate a new BST
@@ -101,7 +108,7 @@ const App = () => {
             disabled={isTraversalActive}
             onClick={clickPreOrder}
           >
-            RUN PREORDER
+            PreOrder
           </button>
           <button
             type="button"
@@ -109,7 +116,7 @@ const App = () => {
             disabled={isTraversalActive}
             onClick={clickInOrder}
           >
-            RUN INORDER
+            InOrder
           </button>
           <button
             type="button"
@@ -117,7 +124,7 @@ const App = () => {
             disabled={isTraversalActive}
             onClick={clickPostOrder}
           >
-            RUN POSTORDER
+            PostOrder
           </button>
           <button
             type="button"
@@ -125,16 +132,24 @@ const App = () => {
             className="traversalButton"
             onClick={clickBFS}
           >
-            RUN BFS
+            BFS
           </button>
+          {/* <button
+            type="button"
+            id="toggleButton"
+            className="traversalButton"
+            onClick={() => setToggleShowNodes(!toggleShowNodes)}
+          >
+            Toggle null nodes
+          </button> */}
         </section>
       </section>
 
-      <section id="treeArea">
+      <main id="treeArea">
         <ul id="traversedResult">{traversedResult}</ul>
         <DisplayTree />
-      </section>
-    </main>
+      </main>
+    </div>
   );
 };
 

@@ -16,6 +16,10 @@ main {
   width: 95vw;
 }
 
+#buttonContainer {
+  width: 100%;
+}
+
 #generate {
   margin: 1vh auto 0 auto;
   display: block;
@@ -32,8 +36,8 @@ main {
   &:hover {
     cursor: pointer;
     background-color: rgb(209, 136, 0);
-    border: 1px solid #808080;
-    box-shadow: 2px 2px 7px 2px #595959;
+    border: 1px solid rgb(192, 125, 0);
+    box-shadow: 2px 2px 7px 2px rgb(139, 105, 41);
     font-size: 1.02em;
   }
   &:active {
@@ -48,6 +52,7 @@ main {
 
 #traversalButtonContainer {
   margin-bottom: 1vh;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -55,15 +60,16 @@ main {
   .traversalButton {
     height: 5vh;
     font-size: 1em;
-    padding: 0.5em;
+    padding: 0.5em 2em 0.5em 2em;
     border-radius: 5px;
     border: 1px solid #e6e6e6;
     box-shadow: 2px 2px 7px 2px #808080;
     outline: none;
+    font-weight: 800;
     &:hover:enabled {
       cursor: pointer;
-      background-color: rgb(209, 136, 0);
-      border: 1px solid #808080;
+      background-color: rgb(255, 187, 60);
+      border: 1px solid rgb(192, 125, 0);
       box-shadow: 2px 2px 7px 2px #595959;
       font-size: 1.02em;
     }
@@ -78,10 +84,6 @@ main {
   }
 }
 
-#object {
-  color: white;
-}
-
 .link {
   fill: none;
   stroke: #ccc;
@@ -89,19 +91,35 @@ main {
 }
 
 .node circle {
-  // fill: #fff;
   stroke: orange;
   stroke-width: 3px;
 }
 
-.node_hidden {
-  display: none;
-  stroke: black;
-  stroke-width: 5px;
-}
+// .node_hidden {
+//   display: none;
+//   stroke: black;
+//   stroke-width: 5px;
+// }
+$showNodes: false;
 
 .hidden {
-  display: none;
+  @if $showNodes {
+    display: none;
+  }
+}
+@function toggle() {
+  @if $showNodes {
+    $showNodes: false;
+  } @else {
+    $showNodes: true;
+  }
+  @return $showNodes;
+}
+
+#toggleButton {
+  &:active {
+    @toggle();
+  }
 }
 
 .node text {
@@ -109,7 +127,6 @@ main {
 }
 
 #traversedResult {
-  display: table;
   list-style-type: none;
   width: 5vw;
   height: 88vh;
@@ -117,8 +134,12 @@ main {
   background-color: orange;
   overflow-y: auto;
   vertical-align: middle;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   li {
     color: black;
+    position: relative;
     font-size: 1.75em;
     padding-top: 4px;
   }

@@ -3,21 +3,20 @@ import * as d3 from "d3";
 const drawTree = (data) => {
   const width = window.innerWidth;
   const height = Math.floor(0.9 * window.innerHeight);
-  const maxHeight = height * 0.8;
 
   const svg = d3
     .select("#d3tree")
     .append("svg")
     .attr("id", "currentTree")
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", `0 0 1000 1075`)
+    .attr("viewBox", `0 0 1025 1010`)
     .append("g")
     .attr("transform", `translate(0, 80)`);
 
   let i = 0;
   const duration = 750;
 
-  const treeMap = d3.tree().size([width, height * 0.1]);
+  const treeMap = d3.tree().size([width, height]);
 
   const root = d3.hierarchy(data, (d) => {
     return d.children;
