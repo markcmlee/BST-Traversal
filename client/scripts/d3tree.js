@@ -56,9 +56,6 @@ const drawTree = (data) => {
       .append("circle")
       .attr("class", "node")
       .attr("r", 1e-6)
-      // .style("fill", "#fff")
-      // .attr("stroke", "orange")
-      // .attr("stroke-width", "3")
       .attr("value", (d) => {
         if (d.data.value === "e") return "";
         return d.data.value;
@@ -82,10 +79,6 @@ const drawTree = (data) => {
         if (d.data.value === "e") return "n";
         return d.data.value;
       });
-    // .style("fill", (d) => {
-    //   if (d.data.value === "n") return "#a6a6a6";
-    //   return "orange";
-    // });
 
     // Update
     const nodeUpdate = nodeEnter.merge(node);
