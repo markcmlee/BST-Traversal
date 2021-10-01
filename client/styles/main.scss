@@ -101,31 +101,16 @@ main {
   stroke-width: 5px;
 }
 
-$showNodes: false;
-
 .hidden {
-  @if $showNodes {
-    display: none;
-  }
   display: none;
-}
-@function toggle() {
-  @if $showNodes {
-    $showNodes: false;
-  } @else {
-    $showNodes: true;
-  }
-  @return $showNodes;
-}
-
-#toggleButton {
-  &:active {
-    @toggle();
-  }
 }
 
 .node text {
   font: 2.5em sans-serif;
+  text-align: center;
+  vertical-align: middle;
+  text-anchor: middle;
+  dominant-baseline: middle;
 }
 
 #traversedResult {
