@@ -95,17 +95,19 @@ main {
   stroke-width: 3px;
 }
 
-// .node_hidden {
-//   display: none;
-//   stroke: black;
-//   stroke-width: 5px;
-// }
+.node_hidden {
+  display: none;
+  stroke: black;
+  stroke-width: 5px;
+}
+
 $showNodes: false;
 
 .hidden {
   @if $showNodes {
     display: none;
   }
+  display: none;
 }
 @function toggle() {
   @if $showNodes {
